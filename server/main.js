@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
 import { Members } from '../imports/collections/members';
+import { Jobs } from '../imports/collections/jobs';
 import { image, helpers } from 'faker';
 
 Meteor.startup(() => {
@@ -27,5 +28,9 @@ Meteor.startup(() => {
 
   Meteor.publish('members', function (per_page) {
     return Members.find({}, { limit: per_page });
+  });
+
+  Meteor.publish('jobs', function () {
+    return Jobs.find({});
   });
 });

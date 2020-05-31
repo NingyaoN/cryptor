@@ -1,5 +1,5 @@
-.body {
-  margin-top: 250px;
+body {
+  background-color: rgb(233, 236, 204);
 }
 
 .cryptor {
@@ -19,26 +19,15 @@
 .members,
 .activities,
 .notifications {
+  background: url('../img/background.jpg');
   margin-top: 10px;
   margin-bottom: 10px;
-}
-.content {
-  border-radius: 5px;
-  border: 1px solid blue;
-}
-
-.members {
   border-radius: 5px;
   border: 1px solid blue;
 }
 
 .btn {
   margin-right: 3px;
-}
-
-.join {
-  border: 1px solid blue;
-  border-radius: 5px;
 }
 
 .member-list {
@@ -50,3 +39,172 @@
 .thumbnail {
   width: 300px;
 }
+
+.act {
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+
+.job {
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.notices {
+  background-color: whitesmoke;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+/* 
+  CSS for diamond - header
+*/
+
+#diamond-narrow {
+  width: 0;
+  height: 0;
+  left: 900px;
+  border: 15px solid transparent;
+  border-bottom: 40px solid orange;
+  position: relative;
+  top: -50px;
+}
+#diamond-narrow:after {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 40px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-top: 40px solid orange;
+}
+
+#diamond-narrow1 {
+  width: 0;
+  height: 0;
+  left: 850px;
+  border: 15px solid transparent;
+  border-bottom: 40px solid blue;
+  position: relative;
+  top: -50px;
+}
+#diamond-narrow1:after {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 40px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-top: 40px solid blue;
+}
+
+#diamond-narrow2 {
+  width: 0;
+  height: 0;
+  left: -10px;
+  border: 15px solid transparent;
+  border-bottom: 40px solid red;
+  position: relative;
+  top: -50px;
+}
+#diamond-narrow2:after {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 40px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-top: 40px solid red;
+}
+
+#diamond-narrow3 {
+  width: 0;
+  height: 0;
+  left: 850px;
+  border: 15px solid transparent;
+  border-bottom: 40px solid yellow;
+  position: relative;
+  top: -50px;
+}
+#diamond-narrow3:after {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 40px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-top: 40px solid yellow;
+}
+
+#diamond-narrow4 {
+  width: 0;
+  height: 0;
+  left: -10px;
+  border: 15px solid transparent;
+  border-bottom: 40px solid green;
+  position: relative;
+  top: -50px;
+}
+#diamond-narrow4:after {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 40px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-top: 40px solid green;
+}
+
+#diamond-narrow5 {
+  width: 0;
+  height: 0;
+  left: 900px;
+  border: 15px solid transparent;
+  border-bottom: 40px solid purple;
+  position: relative;
+  top: -50px;
+}
+#diamond-narrow5:after {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 40px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-top: 40px solid purple;
+}
+
+.blinking {
+  animation: blinkingText 3s linear infinite;
+}
+@keyframes blinkingText {
+  0% {
+    color: white;
+    opacity: 0;
+  }
+  60% {
+    color: red;
+  }
+
+  100% {
+    color: black;
+  }
+}
+/* 
+.blinking {
+  animation: blinker 1.5s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+} */
