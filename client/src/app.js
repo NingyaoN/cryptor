@@ -1,3 +1,5 @@
+// all the components for our header are imported here and displayed
+
 import React, { Component } from 'react';
 
 import Cryptor from './components/cryptor';

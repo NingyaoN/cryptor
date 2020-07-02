@@ -1,82 +1,115 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Jobs } from '../../../imports/collections/jobs';
 
-const JobsEditor = ({ bin, create, jobId }) => {
-  useEffect(() => {
-    console.log(jobId, create);
-    console.log(bin);
-  });
-  const renderCreate = () => {
-    if (create) {
-      return (
-        <div className="row job">
-          {/* <div className="col-sm-6">
-            <label>Enter Details</label>
-            <input
-              type="text"
-              name="title"
-              value={jobs.title}
-              className="form-control"
-              placeholder="Ex: Redesign logo"
-            />
-            <label>Priority Status</label>
-            <select
-              name="priority"
-              onChange={handleChange}
-              className="form-control"
-            >
-              <option value="low">Default: Low</option>
-              <option style={{ color: 'red' }} value="urgent">
-                Urgent
-              </option>
-            </select>
-            <label>Approx. time for completion</label>
-            <input
-              name="tminus"
-              value={job}
-              type="number"
-              className="form-control"
-              placeholder="In days"
-            />
-          </div>
-          <div className="col-sm-6">
-            <label>Short Desc.</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Redesign the team;s logo"
-            />
-            <label>Assign To</label>
-            <select className="form-control">
-              <option>Default: None</option>
-              <option>Ningshen</option>
-              <option>John Doe</option>
-            </select>
-            <br />
-            <br />
-            <button onClick={updateJob} className="btn btn-sm btn-success">
-              Create Job
-            </button>
-            <button
-              onClick={(e) => setCreate(false)}
-              className="btn btn-sm btn-danger pull-right"
-            >
-              Close/Cancel
-            </button>
-          </div> */}
+class JobEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      desc: '',
+      complete: '',
+      priority: '',
+      assignTo: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.createNewJob = this.createNewJob.bind(this);
+  }
+  handleChange(e) {
+    console.log(e.target.value);
+    this.setState((e.target.name = [e.target.value]));
+  }
+
+  createNewJob() {
+    console.log(this.state);
+
+    Meteor.call('jobs.insert', (error, jobId) => {
+      console.log(jobId);
+    });
+  }
+  render() {
+    return (
+      <div className="row job">
+        <div className="col-sm-6">
+          <label>Enter Details</label>
+          <input
+            onChange={(e) => this.setState({ title: e.target.value })}
+            type="text"
+            name="title"
+            className="form-control"
+            placeholder="Ex: Redesign logo"
+          />
+          <label>Priority Status</label>
+          <br />
+
+          <input
+            onChange={(e) => this.setState({ priority: e.target.value })}
+            type="radio"
+            value="low"
+            name="priority"
+            defaultChecked
+          />
+          {' Default:Low '}
+          <br />
+          <input
+            onChange={(e) => this.setState({ priority: e.target.value })}
+            type="radio"
+            value="intemediate"
+            name="priority"
+          />
+          {' Intermediate'}
+          <br />
+          <input
+            onChange={(e) => this.setState({ priority: e.target.value })}
+            type="radio"
+            value="high"
+            name="priority"
+          />
+          {' High:Urgent'}
+          <br />
+          <label>Approx. time for completion</label>
+          <input
+            onChange={(e) => this.setState({ complete: e.target.value })}
+            name="complete"
+            type="number"
+            className="form-control"
+            placeholder="In days"
+          />
         </div>
-      );
-    } else {
-      <div></div>;
-    }
-  };
+        <div className="col-sm-6">
+          <label>Short Desc.</label>
+          <input
+            onChange={(e) => this.setState({ desc: e.target.value })}
+            name="desc"
+            type="text"
+            className="form-control"
+            placeholder="Redesign the team;s logo"
+          />
+          <label>Assign To</label>
+          <select
+            onChange={(e) => this.setState({ assignTo: e.target.value })}
+            name="assignTo"
+            className="form-control"
+          >
+            <option value="none">Default: None</option>
+            <option value="ningshen">Ningshen</option>
+            <option value="john doe">John Doe</option>
+          </select>
+          <br />
+          <br />
+          <br />
+          <br />
 
-  return <div>{renderCreate()}</div>;
-};
+          <button
+            onClick={this.createNewJob}
+            className="btn btn-sm btn-success form-control"
+          >
+            Create Job
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
 
-export default withTracker((props) => {
-  const { jobId } = props.params; // Error: Fix props.params undefined.
-  Meteor.subscribe('jobs');
-  return { job: Jobs.findOne(jobId) };
-})(JobsEditor);
+export default JobEditor;

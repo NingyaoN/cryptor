@@ -3,21 +3,14 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Jobs } from '../../../imports/collections/jobs';
 import JobEditor from './job-editor';
 
+const c = 1;
+
 const Activities = ({ jobs }) => {
   const [create, setCreate] = useState(false);
   const [jobId, setJobId] = useState();
 
-  const createJob = (e) => {
-    e.preventDefault();
-    setCreate(true);
-
-    Meteor.call('jobs.insert', (error, jobId) => {
-      browserHistory.push(`/${jobId}`);
-      setJobId(jobId);
-    });
-  };
-
   const updateJob = () => {};
+
   useEffect(() => {
     console.log(jobs);
   });
@@ -27,14 +20,27 @@ const Activities = ({ jobs }) => {
         <div className="col-sm-12 right pull-right">
           {!create ? (
             <div className=" mb-3">
-              <button onClick={createJob} className="btn btn-success pull-left">
+              <button
+                onClick={(e) => setCreate(!create)}
+                className="btn btn-success pull-left"
+              >
                 Create new job
               </button>
             </div>
           ) : (
-            ''
+            <>
+              <button
+                onClick={(e) => setCreate(!create)}
+                className="btn btn-sm btn-danger pull-right"
+              >
+                Close
+              </button>
+              <br />
+              <br />
+              <JobEditor />
+            </>
           )}
-          <JobEditor create={create} jobId={jobId} />
+
           <br />
           <br />
 
