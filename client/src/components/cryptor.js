@@ -15,7 +15,7 @@ const Cryptor = (props) => (
         <div className="col-sm-12">
           <button
             onClick={(e) => props.handleClick('members')}
-            className="btn btn-sm btn-info ml-4"
+            className="btn btn-sm btn-outline-primary ml-4"
           >
             Members
           </button>
